@@ -28,21 +28,22 @@ var mfWithLevels = _.map(mfMap, function(value, key) {
 	}
 })
 
+
+// Write data to .csv and .json
 var fields = ['code', 'label', 'level'];
 var opts = { fields };
 
 try {
-  var parser = new Json2csvParser(opts);
-  var csv = parser.parse(mfWithLevels);
-  console.log(csv);
+    var parser = new Json2csvParser(opts);
+    var csv = parser.parse(mfWithLevels);
+    console.log(csv);
 
-  fs.writeFile("./masterformat-2016-with-levels.csv", csv, function(err) {
-  	if(err) { return console.log(err); }
-    console.log("masterformat-2016-with-levels.json was saved!");
-	});
-
+    fs.writeFile("./masterformat-2016-with-levels.csv", csv, function(err) {
+        if(err) { return console.log(err); }
+        console.log("masterformat-2016-with-levels.csv was saved!");
+    });
 } catch (err) {
-  console.error(err);
+	console.error(err);
 }
 
 fs.writeFile("./masterformat-2016-with-levels.json", JSON.stringify(mfWithLevels), function(err) {
